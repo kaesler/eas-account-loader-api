@@ -6,10 +6,30 @@ import java.net.URL;
 
 import org.junit.Test;
 
+import flexjson.JSONDeserializer;
+
 public class AllTests {
     private static final String restUrl = "http://localhost:8184";
 
     public static final String DEVEXCH2010_DC = "devexch2010-dc"; // "192.168.168.173";
+
+    @Test
+    public void testJsonRoundTrip() throws Exception {
+        AccountJsonable account = AccountJsonable.withCertificateCreds(
+                "TimeTrade", //licensee,
+                "relliott@devexchtest.local", //emailAddress,
+                "TestAcc1", //externalID,
+                CLIENT_KEYSTORE_DATA,
+                CLIENT_KEYSTORE_PASSWORD,
+                DEVEXCH2010_DC, //mailHost,
+                "http://localhost/notifier"//notifierURI
+            );
+
+        String json = account.toJSON();
+        JSONDeserializer<AccountJsonable> deserializer = new JSONDeserializer<AccountJsonable>();
+        Object o = deserializer.deserialize(json, AccountJsonable.class);
+        System.out.println(o.toString());
+    }
 
     @Test
     public void testCertificateCreds() throws Exception {
@@ -33,7 +53,7 @@ public class AllTests {
         assertTrue(result.isEmpty());
     }
 
-    //@Test
+    @Test
     public void testNonCertificateCreds() throws Exception {
         EasLoader loader = new EasLoader(new URL(restUrl));
         AccountJsonable account = AccountJsonable.withUsernameCreds(

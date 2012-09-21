@@ -60,7 +60,7 @@ public class EasLoader {
                 "application/vnd.timetrade.calendar-connect.account+json"
                 );
         if (resp.status != 201) {
-            return String.format("Bad status: %d" + resp.status);
+            return String.format("Bad status: %d", resp.status);
         }
 
         return "";

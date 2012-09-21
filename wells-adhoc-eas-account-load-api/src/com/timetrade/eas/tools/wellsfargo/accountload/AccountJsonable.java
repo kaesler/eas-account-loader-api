@@ -4,21 +4,21 @@ import flexjson.JSONSerializer;
 
 public class AccountJsonable {
 
-    public final String licensee;
-    public final String emailAddress;
-    public final String externalID;
-    public final String username;
-    public final String domain;
-    public final String password;
-    public final String certificate;
-    public final String certificatePassphrase;
-    public final String mailHost;
-    public final String notifierURI;
+    public String licensee;
+    public String emailAddress;
+    public String externalID;
+    public String username;
+    public String domain;
+    public String password;
+    public String certificate;
+    public String certificatePassphrase;
+    public String mailHost;
+    public String notifierURI;
 
-    public final String mailServerType = "MsExchange";
-    public final boolean tentativeMeansFreeInFreeBusy = false;
-    public final String[] storeFields = {};
-    public final String bodyTemplate = "";
+    public String mailServerType = "MsExchange";
+    public boolean tentativeMeansFreeInFreeBusy = false;
+    public String[] storeFields = {};
+    public String bodyTemplate = "";
 
 
     /**
@@ -137,4 +137,6 @@ public class AccountJsonable {
         this.mailHost = mailHost;
         this.notifierURI = notifierURI;
     }
+
+    public AccountJsonable() {}
 }
